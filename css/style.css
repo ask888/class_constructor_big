@@ -1,0 +1,21 @@
+/* basic styles */
+*{
+    box-sizing: border-box;
+}
+.clearfix::after {
+    clear: both;
+    display: block;
+    content: "";
+}
+
+
+/* header end */
+
+
+/* main */
+
+
+/* main end */
+
+/* footer */
+/* footer end */
