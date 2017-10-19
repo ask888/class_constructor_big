@@ -111,7 +111,8 @@ class Race {
         var par = document.createElement('p');
         par.innerHTML = this.raceName;
         raceLi.appendChild(par);
-        menuUlInLiRace.appendChild(raceLi);
+        menuUlInLiRace.appendChild(raceLi); 
+
 
     }
 }
@@ -143,7 +144,8 @@ class Leader {
         menuUlInLiLead.appendChild(leadLi);
 
     }
-}
+}/*=========================UNIT========================*/
+console.log(unitCount)
 class Unit {
     constructor(master, fraction, name, img){
         this.master = master;
@@ -170,41 +172,45 @@ class Unit {
         par.innerHTML = this.name;
         unitLi.appendChild(par);
         menuUlInLiUnit.appendChild(unitLi);
+        unitLi.onclick =()=> {
+            console.log(this)
+            OnClickUnit(this)};
 
+        }
     }
-}
-let alliance = new Fraction("Alliance", "img/alliance.png");
-let horde = new Fraction("Horde", "img/horde.png");
-let human = new Race("Human", "Alliance", "Varian", "img/human_emblem.png");
-let orc = new Race("Orc", "Horde", "Thrall", "img/orc-emblem.png");
-let drenei = new Race("Drenei", "Alliance", "Velen", "img/drenei_emblem.png");
-let tauren = new Race("Tauren", "Horde", "Bein", "img/tauren_emblem.png");
-let dwarf = new Race("Dwarf", "Alliance", "Bronzebeard", "img/dwarf_emblem.png");
-let undead = new Race("Undead", "Horde", "Sylvana", "img/undead_emblem.png");
-let varian = new Leader("Varian", "Human","Alliance", "img/Varian.jpg");
-let thrall = new Leader("Thrall", "Ork", "Horde", "img/thrall.jpg");
-let velen = new Leader("Velen", "Drenei", "Alliance", "img/velen.jpg");
-let bein = new Leader("Bein", "Tauren", "Horde", "img/bein.jpg");
-let bronzebeard = new Leader("Bronzebeard", "Dwarf", "Alliance", "img/bronzebeard.jpg");
-let sylvana = new Leader("Sylnava", "Undead", "Horde", "img/Sylvana.jpg");
 
-let durotan = new Unit("Thrall", "Horde", "Durotan", "img/durotan.jpg");
-let orgrim = new Unit("Thrall", "Horde", "Orgrim", "img/orgrim.jpg");
+    let alliance = new Fraction("Alliance", "img/alliance.png");
+    let horde = new Fraction("Horde", "img/horde.png");
+    let human = new Race("Human", "Alliance", "Varian", "img/human_emblem.png");
+    let orc = new Race("Orc", "Horde", "Thrall", "img/orc-emblem.png");
+    let drenei = new Race("Drenei", "Alliance", "Velen", "img/drenei_emblem.png");
+    let tauren = new Race("Tauren", "Horde", "Bein", "img/tauren_emblem.png");
+    let dwarf = new Race("Dwarf", "Alliance", "Bronzebeard", "img/dwarf_emblem.png");
+    let undead = new Race("Undead", "Horde", "Sylvana", "img/undead_emblem.png");
+    let varian = new Leader("Varian", "Human","Alliance", "img/Varian.jpg");
+    let thrall = new Leader("Thrall", "Ork", "Horde", "img/thrall.jpg");
+    let velen = new Leader("Velen", "Drenei", "Alliance", "img/velen.jpg");
+    let bein = new Leader("Bein", "Tauren", "Horde", "img/bein.jpg");
+    let bronzebeard = new Leader("Bronzebeard", "Dwarf", "Alliance", "img/bronzebeard.jpg");
+    let sylvana = new Leader("Sylnava", "Undead", "Horde", "img/Sylvana.jpg");
 
-let kern = new Unit("Bein", "Horde", "Kern", "img/kern.jpg");
-let voldgin = new Unit("Bein", "Horde", "Voldgin", "img/voldgin.jpg");
+    let durotan = new Unit("Thrall", "Horde", "Durotan", "img/durotan.jpg");
+    let orgrim = new Unit("Thrall", "Horde", "Orgrim", "img/orgrim.jpg");
 
-let keltalas  = new Unit("Sylvana","Horde", "Keltalas", "img/keltalas.jpg");
-let nerzhul = new Unit("Sylvana","Horde", "Nerzhul", "img/nerzhul.jpg");
+    let kern = new Unit("Bein", "Horde", "Kern", "img/kern.jpg");
+    let voldgin = new Unit("Bein", "Horde", "Voldgin", "img/voldgin.jpg");
 
-let anduin = new Unit("Varian","Alliance", "Anduin", "img/anduin.jpg");
-let bolvar  = new Unit("Varian","Alliance", "Bolvar", "img/bolvar.jpg");
+    let keltalas  = new Unit("Sylvana","Horde", "Keltalas", "img/keltalas.jpg");
+    let nerzhul = new Unit("Sylvana","Horde", "Nerzhul", "img/nerzhul.jpg");
 
-let genn  = new Unit("Velen","Alliance", "Genn", "img/genn.jpg");
-let irel  = new Unit("Velen","Alliance", "Irel", "img/irel.png");
+    let anduin = new Unit("Varian","Alliance", "Anduin", "img/anduin.jpg");
+    let bolvar  = new Unit("Varian","Alliance", "Bolvar", "img/bolvar.jpg");
 
-let loken  = new Unit("Bronzebeard","Alliance", "Loken", "img/loken.jpg");
-let yorg  = new Unit("Bronzebeard","Alliance", "Yorg", "img/yorg.jpg");
+    let genn  = new Unit("Velen","Alliance", "Genn", "img/genn.jpg");
+    let irel  = new Unit("Velen","Alliance", "Irel", "img/irel.png");
+
+    let loken  = new Unit("Bronzebeard","Alliance", "Loken", "img/loken.jpg");
+    let yorg  = new Unit("Bronzebeard","Alliance", "Yorg", "img/yorg.jpg");
 
 
 function OnClick(e) {
@@ -257,7 +263,38 @@ function OnClick(e) {
         }
     }
 }
+    function OnClickUnit(e) {
+        divInfo.innerHTML = "";
+        var pElem = document.createElement("p");
+        pElem.setAttribute("id", "pInfo");
+        pElem.innerHTML = e.name;
+        divInfo.appendChild(pElem);
+        var imgInfo = document.createElement('div');
+        imgInfo.setAttribute("id", "imgInfo");
+        imgInfo.style.backgroundImage = "url('"+e.img+"')";
+        divInfo.appendChild(imgInfo);
+        var headRace = document.createElement('span');
+        headRace.classList.add("text-info");
+        headRace.innerHTML = 'Fraction: ';
+        divInfo.appendChild(headRace);
 
+        var divRace = document.createElement('div');
+        divRace.classList.add("divRace");
+        divRace.innerHTML = "&nbsp;" + e.fraction;
+        divInfo.appendChild(divRace)
+
+
+        divInfo.appendChild(document.createElement('br'));
+        var headLead = document.createElement('span');
+        headLead.classList.add("text-info");
+        headLead.innerHTML = 'Leader: ';
+        divInfo.appendChild(headLead);
+
+        var divLead = document.createElement('div');
+        divLead.classList.add("divRace");
+        divLead.innerHTML = "&nbsp;" + e.master;
+        divInfo.appendChild(divLead)
+    }
 
 
 
