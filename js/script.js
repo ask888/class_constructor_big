@@ -142,7 +142,7 @@ class Leader {
         par.innerHTML = this.name;
         leadLi.appendChild(par);
         menuUlInLiLead.appendChild(leadLi);
-
+        leadLi.onclick =()=> {OnClickLead(this)};
     }
 }
 class Unit {
@@ -290,14 +290,14 @@ function OnRaceClick(raceObj) {
     divRace.classList.add("divRace");
     divRace.innerHTML = raceObj.leader;
     divInfo.appendChild(divRace);
-    
+
     divInfo.appendChild(document.createElement('br'));
     var headUnit = document.createElement('span');
     headUnit.classList.add("text-info");
     headUnit.innerHTML = 'Units: ';
     divInfo.appendChild(headUnit);
     for (var key in unitCount) {
-        if (raceObj.fraction === unitCount[key].fraction) {
+        if (raceObj.leader === unitCount[key].master) {
             var divUnit = document.createElement('div');
             divUnit.classList.add("divRace");
             divUnit.innerHTML = "&nbsp;" + unitCount[key].getUnit();
@@ -305,6 +305,53 @@ function OnRaceClick(raceObj) {
         }
     }
 }
+
+function OnClickLead(e) {
+    divInfo.innerHTML = "";
+    var pElem = document.createElement("p");
+    pElem.setAttribute("id", "pInfo");
+    pElem.innerHTML = e.name;
+    divInfo.appendChild(pElem);
+    var imgInfo = document.createElement('div');
+    imgInfo.setAttribute("id", "imgInfo");
+    imgInfo.style.backgroundImage = "url('"+e.img+"')";
+    divInfo.appendChild(imgInfo);
+    var headRace = document.createElement('span');
+    headRace.classList.add("text-info");
+    headRace.innerHTML = 'Fraction: ';
+    divInfo.appendChild(headRace);
+    var divRace = document.createElement('div');
+    divRace.classList.add("divRace");
+    divRace.innerHTML = "&nbsp;" + e.fraction;
+    divInfo.appendChild(divRace);
+    divInfo.appendChild(document.createElement('br'));
+    var headLead = document.createElement('span');
+    headLead.classList.add("text-info");
+    headLead.innerHTML = 'Race: ';
+    divInfo.appendChild(headLead);
+    var divLead = document.createElement('div');
+    divLead.classList.add("divRace");
+    divLead.innerHTML = "&nbsp;" + e.race;
+    divInfo.appendChild(divLead);
+
+    divInfo.appendChild(document.createElement('br'));
+    var headUnit = document.createElement('span');
+    headUnit.classList.add("text-info");
+    headUnit.innerHTML = 'Units: ';
+    divInfo.appendChild(headUnit);
+    for (var key in unitCount) {
+        if (e.name === unitCount[key].master) {
+            var divUnit = document.createElement('div');
+            divUnit.classList.add("divRace");
+            divUnit.innerHTML = "&nbsp;" + unitCount[key].name;
+            divInfo.appendChild(divUnit);
+        }
+    }
+}
+
+
+
+
 
 
 
