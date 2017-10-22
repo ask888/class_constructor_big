@@ -111,8 +111,8 @@ class Race {
         var par = document.createElement('p');
         par.innerHTML = this.raceName;
         raceLi.appendChild(par);
-        menuUlInLiRace.appendChild(raceLi); 
-
+        menuUlInLiRace.appendChild(raceLi);
+        raceLi.onclick =()=> {OnRaceClick(this)};
 
     }
 }
@@ -263,6 +263,7 @@ function OnClick(e) {
         }
     }
 }
+
     function OnClickUnit(e) {
         divInfo.innerHTML = "";
         var pElem = document.createElement("p");
@@ -295,6 +296,53 @@ function OnClick(e) {
         divLead.innerHTML = "&nbsp;" + e.master;
         divInfo.appendChild(divLead)
     }
+function OnRaceClick(raceObj) {
+    console.log(raceObj);
+    divInfo.innerHTML = "";
+
+    var pElem = document.createElement("p");
+    pElem.setAttribute("id", "pInfo");
+    pElem.innerHTML = raceObj.raceName;
+    divInfo.appendChild(pElem);
+
+    var imgInfo = document.createElement('div');
+    imgInfo.setAttribute("id", "imgInfo");
+    imgInfo.style.backgroundImage = "url('"+raceObj.img+"')";
+    divInfo.appendChild(imgInfo);
+
+    var headRace = document.createElement('span');
+    headRace.classList.add("text-info");
+    headRace.innerHTML = 'Fraction: ';
+    divInfo.appendChild(headRace);
+    var divRace = document.createElement("div");
+    divRace.classList.add("divRace");
+    divRace.innerHTML = raceObj.fraction;
+    divInfo.appendChild(divRace);
+
+    divInfo.appendChild(document.createElement('br'));
+    headRace = document.createElement('span');
+    headRace.classList.add("text-info");
+    headRace.innerHTML = 'Leader: ';
+    divInfo.appendChild(headRace);
+    divRace = document.createElement("div");
+    divRace.classList.add("divRace");
+    divRace.innerHTML = raceObj.leader;
+    divInfo.appendChild(divRace);
+    
+    divInfo.appendChild(document.createElement('br'));
+    var headUnit = document.createElement('span');
+    headUnit.classList.add("text-info");
+    headUnit.innerHTML = 'Units: ';
+    divInfo.appendChild(headUnit);
+    for (var key in unitCount) {
+        if (raceObj.fraction === unitCount[key].fraction) {
+            var divUnit = document.createElement('div');
+            divUnit.classList.add("divRace");
+            divUnit.innerHTML = "&nbsp;" + unitCount[key].getUnit();
+            divInfo.appendChild(divUnit);
+        }
+    }
+}
 
 
 
